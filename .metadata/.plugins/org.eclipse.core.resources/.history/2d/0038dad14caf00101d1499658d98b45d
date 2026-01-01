@@ -1,0 +1,9 @@
+package in.sp.main.entities;
+
+public class Employee {
+	private long empId;
+	private String name;
+	private double salary;
+	
+	
+}

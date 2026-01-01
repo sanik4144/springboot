@@ -1,0 +1,6 @@
+package in.sp.main.entities;
+
+public class Employee {
+	private long empId;
+	private 
+}

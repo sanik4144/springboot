@@ -1,0 +1,91 @@
+package in.sp.main.services;
+
+import java.util.Optional;
+import java.util.Scanner;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import in.sp.main.entities.Employee;
+import in.sp.main.repository.EmployeeRepository;
+
+@Service
+public class EmployeeServiceImpl implements EmployeeService{
+	
+	Scanner inp = new Scanner(System.in);
+	
+	@Autowired
+	EmployeeRepository employeeRepository; 
+	@Override
+	public void insertEmployee() {
+		System.out.print("Enter Employee Name: ");
+		String name = inp.nextLine();
+		
+		System.out.print("Enter Employee Salary: ");
+		double salary = inp.nextDouble();
+		
+		Employee emp = new Employee(name, salary);
+		
+		try {
+			employeeRepository.save(emp);
+			System.out.println("Insertion Successfull");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void selectEmployee(Long id) {
+		Optional<Employee> optional = employeeRepository.findById(id);
+		Employee emp = optional.get();
+		
+		if(optional.isPresent()) {
+			System.out.println("----------------------------");
+			System.out.println("ID: "+emp.getEmpId());
+			System.out.println("Name: "+emp.getName());
+			System.out.println("Salary: "+emp.getSalary());
+			System.out.println("----------------------------");
+		}
+		else {
+			System.out.println("----------------------------");
+			System.out.println("Employee Not Found");
+			System.out.println("----------------------------");
+		}
+	}
+
+	@Override
+	public void updateEmployee() {
+		System.out.print("Enter Employee ID to Update: ");
+		long id = inp.nextLong();
+		inp.nextLine();
+		
+		Optional<Employee> optional = employeeRepository.findById(id);
+		
+		if(optional.isEmpty()) {
+			System.out.println("----------------------------");
+			System.out.println("Employee Not Found");
+			System.out.println("----------------------------");
+			return;
+		}
+		Employee emp = optional.get();
+		
+		System.out.print("Enter new Name: ");
+		String name = inp.nextLine();
+		
+		System.out.print("Enter new Salary: ");
+		double salary = inp.nextDouble();
+		inp.nextLine();
+		
+		emp.setName(name);
+		emp.setSalary(salary);
+		
+		employeeRepository.save(emp);
+		System.out.println("Update Successfull");
+	}
+
+	@Override
+	public void deleteEmployee() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

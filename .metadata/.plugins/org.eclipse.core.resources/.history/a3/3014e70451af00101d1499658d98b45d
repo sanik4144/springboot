@@ -1,0 +1,8 @@
+package in.sp.main.services;
+
+import in.sp.main.entities.Employee;
+
+public interface EmployeeService {
+	public void insertEmployee();
+	public void selectEmployee(Long id);
+}

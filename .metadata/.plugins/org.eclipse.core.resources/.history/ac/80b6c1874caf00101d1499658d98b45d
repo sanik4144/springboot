@@ -1,0 +1,7 @@
+spring.application.name=SpringBootDataJpa-Practice
+
+spring.datasource.url = 
+spring.datasource.username = root
+spring.datasource.password = 4922
+
+spring

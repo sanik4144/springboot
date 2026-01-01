@@ -1,0 +1,28 @@
+package in.sp.main;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+
+import in.sp.main.entities.Student;
+import in.sp.main.services.StudentService;
+import in.sp.main.services.StudentServiceImpl;
+
+@SpringBootApplication
+public class SpringBootDataJpaApplication {
+
+	public static void main(String[] args) {
+		ApplicationContext context =  SpringApplication.run(SpringBootDataJpaApplication.class, args);
+		StudentService stdService = context.getBean(StudentServiceImpl.class);
+		
+//		Student std = new Student();
+//		std.setName("Sayme");
+//		std.setRollno(102);
+//		std.setMarks(99.3f);
+//		
+//		boolean status = stdService.addStudentDetails(std);
+//		if(status) System.out.println("Insertion Successfull");
+//		else System.out.println("Insertion Failed");
+	}
+
+}
